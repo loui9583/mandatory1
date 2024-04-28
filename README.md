@@ -1,0 +1,1 @@
+Mandatory 1 by Louis Nordsø. Simple info SSR website with express that serves static html, explaining what has been learnt in the course up until the assignment. Used highlight.js to display code blocks in a clean way.
