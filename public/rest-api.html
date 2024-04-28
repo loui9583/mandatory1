@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            /* Darkened text color for better readability */
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        nav {
+            flex: 1;
+            margin-right: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main {
+            flex: 3;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        nav ul li a:hover {
+            color: #007bff;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #555;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #000000;
+        }
+
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        code.javascript {
+            display: block;
+        }
+
+        .selected {
+            color: darkblue;
+        }
+
+        /* Responsive Styles */
+        @media only screen and (max-width: 768px) {
+            #container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            nav {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+    <!-- Highlight.js CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <nav>
+            <ul>
+                <li><a href="/data-types-in-javascript">Data types in Javascript.</a></li>
+                <li><a href="/functions-in-javascript">Functions in Javascript.</a></li>
+                <li><a href="/loop-methods">loop methods in Javascript (+map, +filter, %reduce)</a></li>
+                <li><a href="/fetch-request">Fetch request in Javascript</a></li>
+                <li><a href="/type-coercion">Type coercion in Javascript and strategies to avoid it.</a></li>
+                <li></li>
+                <li><a href="/git-in-the-terminal">Git in the terminal.</a></li>
+                <li></li>
+                <li><a href="/what-is-node-js">What is Node.js and how to run files with it.</a></li>
+                <li><a href="/package-json-node-modules">Package.json + node_modules</a></li>
+                <li><a href="/getting-started-with-express">Getting started with Express</a></li>
+                <li></li>
+                <li><a class="selected" href="/rest-api">REST API.</a></li>
+                <li></li>
+                <li><a href="/terminology-for-url">Terminology for different parts of an URL.</a></li>
+
+
+            </ul>
+        </nav>
+        <main>
+            <h1>REST API</h1>
+            <h3>REST Conventions</h3>
+            <p>REST (Representational State Transfer) APIs follow certain conventions to provide a standardized and
+                consistent approach to building web services. The three main conventions are:</p>
+            <ol>
+                <li><strong>Using the Right HTTP Verb:</strong> HTTP verbs such as GET, POST, PUT, DELETE, etc., should
+                    be used according to their intended purpose. For example:
+                    <ul>
+                        <li><code>GET</code> - Retrieve data from the server.</li>
+                        <li><code>POST</code> - Create new data on the server.</li>
+                        <li><code>PUT</code> - Update existing data on the server.</li>
+                        <li><code>DELETE</code> - Remove data from the server.</li>
+                    </ul>
+                </li>
+                <li><strong>Ordering:</strong> APIs should follow a predictable order in their responses. For example,
+                    when fetching a collection of resources, they should be ordered in a consistent manner (e.g.,
+                    ascending order by ID).</li>
+                <li><strong>Naming (Noun, Plural) that Maps to Collections in Your System:</strong> Resource endpoints
+                    should be named using plural nouns to represent collections of resources. For example:
+                    <ul>
+                        <li><code>/users</code> - Collection of user resources.</li>
+                        <li><code>/products</code> - Collection of product resources.</li>
+                        <li><code>/posts</code> - Collection of post resources.</li>
+                    </ul>
+                </li>
+            </ol>
+            <h3>Full CRUDable REST API</h3>
+            <p>A Full CRUDable REST API adheres to the conventions outlined above and supports CRUD operations (Create,
+                Read, Update, Delete) on resources. This means:</p>
+            <ul>
+                <li><strong>Create:</strong> The API allows clients to create new resources using the <code>POST</code>
+                    method.</li>
+                <li><strong>Read:</strong> The API provides endpoints to retrieve resource(s) using the <code>GET</code>
+                    method.</li>
+                <li><strong>Update:</strong> The API supports updating existing resources using the <code>PUT</code>
+                    method.</li>
+                <li><strong>Delete:</strong> The API allows the removal of resources using the <code>DELETE</code>
+                    method.</li>
+            </ul>
+            <p>For example, a Full CRUDable REST API for managing a collection of books might have the following
+                endpoints:</p>
+            <ul>
+                <li><code>GET /books</code> - Retrieve all books.</li>
+                <li><code>GET /books/{id}</code> - Retrieve a specific book by ID.</li>
+                <li><code>POST /books</code> - Create a new book.</li>
+                <li><code>PUT /books/{id}</code> - Update an existing book by ID.</li>
+                <li><code>DELETE /books/{id}</code> - Delete a book by ID.</li>
+            </ul>
+        </main>
+    </div>
+</body>
+
+</html>

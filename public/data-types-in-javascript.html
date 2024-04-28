@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            /* Darkened text color for better readability */
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        nav {
+            flex: 1;
+            margin-right: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main {
+            flex: 3;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        nav ul li a:hover {
+            color: #007bff;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #555;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #000000;
+        }
+
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        code.javascript {
+            display: block;
+        }
+
+        .selected {
+            color: darkblue;
+        }
+
+        /* Responsive Styles */
+        @media only screen and (max-width: 768px) {
+            #container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            nav {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+    <!-- Highlight.js CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <nav>
+            <ul>
+                <li><a class="selected" href="/data-types-in-javascript">Data types in Javascript.</a></li>
+                <li><a href="/functions-in-javascript">Functions in Javascript.</a></li>
+                <li><a href="/loop-methods">loop methods in Javascript (+map, +filter, %reduce)</a></li>
+                <li><a href="/fetch-request">Fetch request in Javascript</a></li>
+                <li><a href="/type-coercion">Type coercion in Javascript and strategies to avoid it.</a></li>
+                <li></li>
+                <li><a href="/git-in-the-terminal">Git in the terminal.</a></li>
+                <li></li>
+                <li><a href="/what-is-node-js">What is Node.js and how to run files with it.</a></li>
+                <li><a href="/package-json-node-modules">Package.json + node_modules</a></li>
+                <li><a href="/getting-started-with-express">Getting started with Express</a></li>
+                <li></li>
+                <li><a href="/rest-api">REST API.</a></li>
+                <li></li>
+                <li><a href="/terminology-for-url">Terminology for different parts of an URL.</a></li>
+
+
+            </ul>
+        </nav>
+        <main>
+            <h1>Data Types in JavaScript</h1>
+            <h3>Introduction to Data Types</h3>
+            <p>JavaScript is a dynamically typed language, meaning variables can hold values of different types without
+                any explicit type declaration. There are several fundamental data types in JavaScript:</p>
+            <ul>
+                <li><strong>Number:</strong> Represents numeric data, both integer and floating-point numbers.</li>
+                <li><strong>String:</strong> Represents textual data, enclosed within single or double quotes.</li>
+                <li><strong>Boolean:</strong> Represents a logical value, either <code>true</code> or
+                    <code>false</code>.</li>
+                <li><strong>Undefined:</strong> Represents a variable that has been declared but not assigned any value.
+                </li>
+                <li><strong>Null:</strong> Represents the intentional absence of any value.</li>
+                <li><strong>Object:</strong> Represents a collection of key-value pairs. Objects can be created with
+                    curly braces <code>{}</code>.</li>
+                <li><strong>Array:</strong> Represents a collection of elements, ordered and indexed, which can be of
+                    any data type. Arrays can be created with square brackets <code>[]</code>.</li>
+            </ul>
+
+            <h3>Variable Declaration in JavaScript</h3>
+            <p>In JavaScript, there are three ways to declare variables:</p>
+            <ul>
+                <li><strong>var:</strong> Declares a variable that is function-scoped or globally scoped. However,
+                    <code>var</code> has some issues:</li>
+                <ul>
+                    <li>Variables declared with <code>var</code> can be re-declared and updated within their scope,
+                        which may lead to unexpected behavior and bugs.</li>
+                    <li>Variables declared with <code>var</code> are hoisted to the top of their scope, which can
+                        sometimes result in difficult-to-debug code.</li>
+                </ul>
+                <li><strong>let:</strong> Declares a variable that is block-scoped. Use <code>let</code> when you need
+                    to reassign the variable's value later in your code, or when the variable's value will change over
+                    time.</li>
+                <li><strong>const:</strong> Declares a variable that is block-scoped and cannot be reassigned. Use
+                    <code>const</code> when the variable's value should never change after initialization. This promotes
+                    immutability and makes the code easier to reason about.</li>
+            </ul>
+
+            <h3>Example Code</h3>
+            <p>Here's an example illustrating the usage of <code>let</code>, <code>const</code>, and why not to use
+                <code>var</code>:</p>
+            <pre><code class="javascript">
+        // Using var (avoid this)
+        var x = 10;
+        var x = 20; // No error, x is re-declared
+        console.log(x); // Output: 20
+        
+        // Using let
+        let y = 30;
+        y = 40; // No error, y is reassigned
+        console.log(y); // Output: 40
+        
+        // Using const
+        const z = 50;
+        // z = 60; // Error: Assignment to constant variable
+        console.log(z); // Output: 50
+        
+        // Block-scoped variables with let and const
+        {
+            let innerLet = "Hello";
+            const innerConst = "World";
+            console.log(innerLet); // Output: "Hello"
+            console.log(innerConst); // Output: "World"
+        }
+        // console.log(innerLet); // Error: innerLet is not defined
+        // console.log(innerConst); // Error: innerConst is not defined
+            </code></pre>
+
+            <h3>Type Conversion</h3>
+            <p>JavaScript performs type conversion implicitly and explicitly:</p>
+            <ul>
+                <li><strong>Implicit Conversion:</strong> Automatically performed by JavaScript when necessary, such as
+                    when comparing values of different types. Sometimes, implicit conversion can lead to unexpected
+                    results.</li>
+                <li><strong>Explicit Conversion:</strong> Also known as type casting, done explicitly using built-in
+                    functions like <code>Number()</code>, <code>String()</code>, <code>Boolean()</code>, etc. Explicit
+                    conversion is predictable and can be used to enforce type expectations.</li>
+            </ul>
+
+            <h4>Examples of Type Conversion</h4>
+            <p>Implicit Conversion:</p>
+            <pre><code class="javascript">
+        // Addition of different types
+        let result = 10 + "20"; // "10" is implicitly converted to a string
+        console.log(result); // Output: "1020"
+        
+        // Comparison of different types
+        let comparison = 10 == "10"; // "10" is implicitly converted to a number
+        console.log(comparison); // Output: true
+            </code></pre>
+
+            <p>Explicit Conversion:</p>
+            <pre><code class="javascript">
+        // Using Number() to explicitly convert to a number
+        let num = Number("123");
+        console.log(num); // Output: 123
+        console.log(typeof num); // Output: "number"
+        
+        // Using String() to explicitly convert to a string
+        let str = String(123);
+        console.log(str); // Output: "123"
+        console.log(typeof str); // Output: "string"
+        
+        // Using Boolean() to explicitly convert to a boolean
+        let bool = Boolean(0);
+        console.log(bool); // Output: false
+        console.log(typeof bool); // Output: "boolean"
+            </code></pre>
+
+            <p>It's important to understand when implicit conversion behaves as expected and when it doesn't. Explicit
+                conversion provides more control over the type conversion process, making the code more predictable and
+                easier to maintain.</p>
+        </main>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            /* Darkened text color for better readability */
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        nav {
+            flex: 1;
+            margin-right: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main {
+            flex: 3;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        nav ul li a:hover {
+            color: #007bff;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #555;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #000000;
+        }
+
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        code.javascript {
+            display: block;
+        }
+
+        .selected {
+            color: darkblue;
+        }
+
+        /* Responsive Styles */
+        @media only screen and (max-width: 768px) {
+            #container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            nav {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+    <!-- Highlight.js CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <nav>
+            <ul>
+                <li><a href="/data-types-in-javascript">Data types in Javascript.</a></li>
+                <li><a class="selected" href="/functions-in-javascript">Functions in Javascript.</a></li>
+                <li><a href="/loop-methods">loop methods in Javascript (+map, +filter, %reduce)</a></li>
+                <li><a href="/fetch-request">Fetch request in Javascript</a></li>
+                <li><a href="/type-coercion">Type coercion in Javascript and strategies to avoid it.</a></li>
+                <li></li>
+                <li><a href="/git-in-the-terminal">Git in the terminal.</a></li>
+                <li></li>
+                <li><a href="/what-is-node-js">What is Node.js and how to run files with it.</a></li>
+                <li><a href="/package-json-node-modules">Package.json + node_modules</a></li>
+                <li><a href="/getting-started-with-express">Getting started with Express</a></li>
+                <li></li>
+                <li><a href="/rest-api">REST API.</a></li>
+                <li></li>
+                <li><a href="/terminology-for-url">Terminology for different parts of an URL.</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h1>Functions + Callback Functions</h1>
+            <h3>Understanding Functions and Callback Functions in JavaScript</h3>
+            <p>In JavaScript, functions are fundamental blocks of code that can be defined and invoked to perform a specific task. They are reusable and can take parameters and return values. Callback functions, on the other hand, are functions passed as arguments to another function to be executed later, often after an operation completes.</p>
+            
+            <h3>Basic Function Syntax</h3>
+            <p>Functions in JavaScript can be defined using the <code>function</code> keyword followed by a name (optional) and a set of parentheses containing zero or more parameters. The function body is enclosed in curly braces (<code>{}</code>).</p>
+            <pre><code class="javascript">
+        function add(a, b) {
+            return a + b;
+        }
+        
+        const result = add(5, 3);
+        console.log(result); // Output: 8
+            </code></pre>
+            
+            <h3>Callback Functions</h3>
+            <p>Callback functions are functions passed as arguments to another function and executed later within that function. They are often used in scenarios like event handling or asynchronous operations.</p>
+            
+            <p>Here's a simple example of using a callback function:</p>
+            <pre><code class="javascript">
+        function greet(name, callback) {
+            console.log('Hello, ' + name + '!');
+            callback(); // Execute the callback function
+        }
+        
+        function sayGoodbye() {
+            console.log('Goodbye!');
+        }
+        
+        // Using greet function with a callback
+        greet('John', sayGoodbye);
+            </code></pre>
+            
+            <p>In this example, <code>greet</code> is a function that takes a <code>name</code> parameter and a <code>callback</code> function. After greeting the person with the provided name, it executes the callback function. We pass <code>sayGoodbye</code> function as the callback, which simply logs 'Goodbye!' to the console.</p>
+        </main>        
+          
+    </div>
+</body>
+
+</html>

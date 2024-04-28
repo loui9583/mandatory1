@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            /* Darkened text color for better readability */
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        nav {
+            flex: 1;
+            margin-right: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main {
+            flex: 3;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        nav ul li a:hover {
+            color: #007bff;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #555;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #000000;
+        }
+
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        code.javascript {
+            display: block;
+        }
+
+        .selected {
+            color: darkblue;
+        }
+
+        /* Responsive Styles */
+        @media only screen and (max-width: 768px) {
+            #container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            nav {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+    <!-- Highlight.js CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <nav>
+            <ul>
+                <li><a href="/data-types-in-javascript">Data types in Javascript.</a></li>
+                <li><a href="/functions-in-javascript">Functions in Javascript.</a></li>
+                <li><a href="/loop-methods">loop methods in Javascript (+map, +filter, %reduce)</a></li>
+                <li><a class="selected" href="/fetch-request">Fetch request in Javascript</a></li>
+                <li><a href="/type-coercion">Type coercion in Javascript and strategies to avoid it.</a></li>
+                <li></li>
+                <li><a href="/git-in-the-terminal">Git in the terminal.</a></li>
+                <li></li>
+                <li><a href="/what-is-node-js">What is Node.js and how to run files with it.</a></li>
+                <li><a class="selected" href="/package-json-node-modules">Package.json + node_modules</a></li>
+                <li><a href="/getting-started-with-express">Getting started with Express</a></li>
+                <li></li>
+                <li><a href="/rest-api">REST API.</a></li>
+                <li></li>
+                <li><a href="/terminology-for-url">Terminology for different parts of an URL.</a></li>
+
+
+            </ul>
+        </nav>
+        <main>
+            <h1>Understanding package.json and node_modules</h1>
+            <h3>Introduction</h3>
+            <p>When working with Node.js projects, you often come across two important entities: <code>package.json</code> and <code>node_modules</code>. These play crucial roles in managing dependencies and configuring your Node.js applications.</p>
+            <h3>package.json</h3>
+            <p>The <code>package.json</code> file is a metadata file for your project. It contains various information such as project name, version, dependencies, scripts, and more. Let's break down its key components:</p>
+            <ul>
+                <li><strong>Name:</strong> Specifies the name of your project.</li>
+                <li><strong>Version:</strong> Defines the version of your project using semantic versioning (e.g., 1.0.0).</li>
+                <li><strong>Description:</strong> Provides a brief description of your project.</li>
+                <li><strong>Main:</strong> Specifies the entry point of your application.</li>
+                <li><strong>Scripts:</strong> Allows you to define custom scripts for tasks like running tests, building the project, etc.</li>
+                <li><strong>Dependencies:</strong> Lists the dependencies required by your project. These dependencies are installed via npm (Node Package Manager).</li>
+                <li><strong>DevDependencies:</strong> Similar to dependencies, but these are only needed during development (e.g., testing frameworks, build tools).</li>
+            </ul>
+            <p>Here's an example of a simple <code>package.json</code>:</p>
+            <pre><code class="javascript">
+        {
+          "name": "my-project",
+          "version": "1.0.0",
+          "description": "A simple Node.js project",
+          "main": "index.js",
+          "scripts": {
+            "start": "node index.js",
+            "test": "mocha"
+          },
+          "dependencies": {
+            "express": "^4.17.1",
+            "lodash": "^4.17.21"
+          },
+          "devDependencies": {
+            "mocha": "^9.0.0"
+          }
+        }
+            </code></pre>
+            <h3>node_modules</h3>
+            <p>The <code>node_modules</code> directory is where npm installs project dependencies. When you run <code>npm install</code>, npm reads the <code>package.json</code> file and installs the specified dependencies into this directory.</p>
+            <p>It's important to note that you should never manually modify the contents of the <code>node_modules</code> directory. Instead, you manage dependencies by updating your <code>package.json</code> and letting npm handle the installation and updates.</p>
+            <p>Here's how your project structure typically looks:</p>
+            <pre><code>
+        my-project/
+        ├── node_modules/
+        │   ├── express/
+        │   ├── lodash/
+        │   └── ...
+        ├── index.js
+        └── package.json
+            </code></pre>
+            <h3>Installing Dependencies</h3>
+            <p>To install a specific library, you use the <code>npm install</code> command followed by the library name. For example:</p>
+            <pre><code>npm install express</code></pre>
+            <p>This installs the <code>express</code> library and adds it to your <code>node_modules</code> directory. Additionally, it updates your <code>package.json</code> file:</p>
+            <pre><code class="javascript">
+        {
+          "dependencies": {
+            "express": "^4.17.1"
+          }
+        }
+            </code></pre>
+            <p>If you have dependencies listed in your <code>package.json</code> file, you can simply run <code>npm install</code> to automatically install all of them:</p>
+            <pre><code>npm install</code></pre>
+            <p>This command reads your <code>package.json</code> file and installs all dependencies and devDependencies listed in it.</p>
+            <h3>Global Installation</h3>
+            <p>In addition to project-specific installations, you can also install packages globally on your system using the <code>-g</code> flag. For example:</p>
+            <pre><code>npm install -g nodemon</code></pre>
+            <p>This installs <code>nodemon</code> globally, allowing you to use it as a command-line tool across your system. However, it's recommended to install packages globally only if they are meant to be used as command-line tools.</p>
+            <p>Keep in mind that global installations don't modify your <code>package.json</code> file and don't reside in your project directory.</p>
+            </main>
+                  
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            /* Darkened text color for better readability */
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        nav {
+            flex: 1;
+            margin-right: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main {
+            flex: 3;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        nav ul li a:hover {
+            color: #007bff;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #555;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #000000;
+        }
+
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        code.javascript {
+            display: block;
+        }
+
+        .selected {
+            color: darkblue;
+        }
+
+        /* Responsive Styles */
+        @media only screen and (max-width: 768px) {
+            #container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            nav {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+    <!-- Highlight.js CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <nav>
+            <ul>
+                <li><a href="/data-types-in-javascript">Data types in Javascript.</a></li>
+                <li><a href="/functions-in-javascript">Functions in Javascript.</a></li>
+                <li><a href="/loop-methods">loop methods in Javascript (+map, +filter, %reduce)</a></li>
+                <li><a href="/fetch-request">Fetch request in Javascript</a></li>
+                <li><a href="/type-coercion">Type coercion in Javascript and strategies to avoid it.</a></li>
+                <li></li>
+                <li><a class="selected" href="/git-in-the-terminal">Git in the terminal.</a></li>
+                <li></li>
+                <li><a href="/what-is-node-js">What is Node.js and how to run files with it.</a></li>
+                <li><a href="/package-json-node-modules">Package.json + node_modules</a></li>
+                <li><a href="/getting-started-with-express">Getting started with Express</a></li>
+                <li></li>
+                <li><a href="/rest-api">REST API.</a></li>
+                <li></li>
+                <li><a href="/terminology-for-url">Terminology for different parts of an URL.</a></li>
+
+
+            </ul>
+        </nav>
+        <main>
+            <h1>Git in the Terminal</h1>
+            <h3>Introduction to Basic Git Commands in the Terminal</h3>
+            <p>Git is a widely used version control system that allows developers to track changes in their projects and
+                collaborate with others efficiently. While there are several graphical user interfaces (GUIs) available
+                for Git, learning how to use Git in the terminal provides a deeper understanding of Git's functionality
+                and enhances your command-line skills.</p>
+
+            <h3>Initializing a Repository</h3>
+            <p>To start using Git in a project, navigate to the project's directory in your terminal and initialize a
+                Git repository with the following command:</p>
+            <pre><code>$ git init</code></pre>
+
+            <h3>Adding and Committing Changes</h3>
+            <p>After making changes to your project files, you can add them to the staging area using:</p>
+            <pre><code>$ git add filename</code></pre>
+            <p>Once files are staged, commit them to the repository:</p>
+            <pre><code>$ git commit -m "Commit message"</code></pre>
+            <p>If you want to commit all changes, including deletions, you can use the following command, which stages
+                all tracked changes (modified and deleted) before creating a new commit:</p>
+            <pre><code>$ git commit -a "Commit message"</code></pre>
+            <p>**Important Note:** While `git commit -a` is convenient, it's essential to be aware that it stages
+                changes automatically. If you have unstaged changes you don't want to commit, using `git commit -a`
+                might capture them unintentionally. It's a good practice to review the changes using `git status` before
+                committing to ensure you're capturing what you intend to.</p>
+
+            <h3>Checking the Status and History</h3>
+            <p>You can check the current status of your repository using:</p>
+            <pre><code>$ git status</code></pre>
+            <p>To view the commit history:</p>
+            <pre><code>$ git log</code></pre>
+
+            <h3>Branching and Merging</h3>
+            <p>Branching allows you to create isolated workspaces within your Git repository. This is useful for
+                developing new features or fixing bugs without affecting the main codebase. Here are some basic
+                branching commands:</p>
+            <pre><code>$ git branch branchname (to create a new branch)</code></pre>
+            <pre><code>$ git checkout branchname (to switch to a different branch)</code></pre>
+            <pre><code>$ git merge branchname (to merge changes from one branch into another)</code></pre>
+
+            <h3>Ignoring Files with .gitignore</h3>
+            <p>The `.gitignore` file specifies intentionally untracked files that Git should ignore. These can include
+                files generated by your operating system, code editor, or build tools, as well as sensitive information
+                like API keys.</p>
+            <p>To create a `.gitignore` file in your project, simply create a new file named `.gitignore` in the root of
+                your project directory.</p>
+            <p>For example, in a Node.js project, your `.gitignore` file might look like this:</p>
+            <pre><code>
+            /node_modules 
+
+            *.log    
+
+            .env
+            </code></pre>
+            <p>These patterns specify that files and directories matching these patterns should be ignored by Git. This
+                helps keep your repository clean and focused on the files that are important for version control.</p>
+
+            <h3>Pushing Changes</h3>
+            <p>Once you've made and committed changes to a local branch, you can push them to a remote repository (like
+                GitHub) to share your work with others or collaborate on a project. To push changes to a remote
+                repository:</p>
+            <pre><code>$ git push origin branchname</code></pre>
+
+            <p>These are just a few basic commands to get started with Git in the terminal. As you become more familiar
+                with Git, you'll discover more advanced features and techniques to streamline your workflow.</p>
+        </main>
+
+
+
+    </div>
+</body>
+
+</html>

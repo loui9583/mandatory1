@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            /* Darkened text color for better readability */
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        nav {
+            flex: 1;
+            margin-right: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main {
+            flex: 3;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        nav ul li a:hover {
+            color: #007bff;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #555;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #000000;
+        }
+
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        code.javascript {
+            display: block;
+        }
+
+        .selected {
+            color: darkblue;
+        }
+
+        /* Responsive Styles */
+        @media only screen and (max-width: 768px) {
+            #container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            nav {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+    <!-- Highlight.js CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <nav>
+            <ul>
+                <li><a href="/data-types-in-javascript">Data types in Javascript.</a></li>
+                <li><a href="/functions-in-javascript">Functions in Javascript.</a></li>
+                <li><a href="/loop-methods">loop methods in Javascript (+map, +filter, %reduce)</a></li>
+                <li><a href="/fetch-request">Fetch request in Javascript</a></li>
+                <li><a href="/type-coercion">Type coercion in Javascript and strategies to avoid it.</a></li>
+                <li></li>
+                <li><a href="/git-in-the-terminal">Git in the terminal.</a></li>
+                <li></li>
+                <li><a href="/what-is-node-js">What is Node.js and how to run files with it.</a></li>
+                <li><a href="/package-json-node-modules">Package.json + node_modules</a></li>
+                <li><a class="selected" href="/getting-started-with-express">Getting started with Express</a></li>
+                <li></li>
+                <li><a href="/rest-api">REST API.</a></li>
+                <li></li>
+                <li><a href="/terminology-for-url">Terminology for different parts of an URL.</a></li>
+
+
+            </ul>
+        </nav>
+        <main>
+            <h1>Getting Started with Express</h1>
+            <h3>Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.</h3>
+            
+            <h2>GET Request</h2>
+            <p>To handle GET requests, you define a route using Express's `get()` method.</p>
+            <pre><code class="javascript">
+                const express = require('express');
+                const app = express();
+        
+                app.get('/', (req, res) => {
+                    res.send('Hello World!');
+                });
+        
+                app.listen(3000, () => {
+                    console.log('Server is running on port 3000');
+                });
+            </code></pre>
+        
+            <h2>POST, UPDATE, DELETE, PATCH Requests</h2>
+            <p>For other HTTP methods, you use similar methods like `post()`, `put()`, `delete()`, and `patch()`.</p>
+        
+            <h2>Body Parsing</h2>
+            <p>To parse incoming request bodies, you use middleware like `express.json()` or `express.urlencoded()`.</p>
+            <pre><code class="javascript">
+                const express = require('express');
+                const app = express();
+        
+                app.use(express.json()); // for parsing application/json
+                app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+        
+                app.post('/user', (req, res) => {
+                    console.log(req.body);
+                    res.json(req.body);
+                });
+        
+                app.listen(3000, () => {
+                    console.log('Server is running on port 3000');
+                });
+            </code></pre>
+        
+            <h2>Using Middleware</h2>
+            <p>Middleware functions are functions that have access to the request object (`req`), the response object (`res`), and the next middleware function in the application’s request-response cycle. Middleware functions can perform tasks, modify `req` and `res` objects, end the request-response cycle, and call the next middleware function in the stack.</p>
+            <pre><code class="javascript">
+                const express = require('express');
+                const app = express();
+        
+                // Custom middleware
+                const myMiddleware = (req, res, next) => {
+                    console.log('Middleware executed!');
+                    next();
+                };
+        
+                app.use(myMiddleware);
+        
+                app.get('/', (req, res) => {
+                    res.send('Hello World!');
+                });
+        
+                app.listen(3000, () => {
+                    console.log('Server is running on port 3000');
+                });
+            </code></pre>
+        
+            <h2>Enabling JSON and Sending/Receiving JSON</h2>
+            <p>To enable JSON in Express, use `express.json()`. To send and receive JSON, you use `res.json()` and `req.body` respectively.</p>
+            <pre><code class="javascript">
+                const express = require('express');
+                const app = express();
+        
+                app.use(express.json());
+        
+                app.post('/api/users', (req, res) => {
+                    // Create a new user
+                    const newUser = req.body;
+                    // Assuming some user creation logic here
+                    res.json(newUser);
+                });
+        
+                app.get('/api/users/:id', (req, res) => {
+                    // Retrieve user by ID
+                    const userId = req.params.id;
+                    // Assuming fetching user logic here
+                    const user = { id: userId, name: 'John Doe' }; // Sample user
+                    res.json(user);
+                });
+        
+                app.listen(3000, () => {
+                    console.log('Server is running on port 3000');
+                });
+            </code></pre>
+        </main>        
+    </div>
+</body>
+
+</html>
